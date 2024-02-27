@@ -1,0 +1,25 @@
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace GMP.API.Models.Domain
+{
+    public class Applicant
+    {
+        [Key]
+        public int ApplicantId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Title { get; set; }
+        public string Department { get; set; }
+        public string Email { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Status { get; set; }
+        public bool IsStaffMember { get; set; }
+
+        [ForeignKey("Document")]
+        public int? DocumentId { get; set; }
+        public Document Document { get; set; }
+
+        public ICollection<GrantApplicant> GrantApplicants { get; set; }
+    }
+}

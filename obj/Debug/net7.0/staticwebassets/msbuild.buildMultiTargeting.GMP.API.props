@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\GMP.API.props" />
+</Project>

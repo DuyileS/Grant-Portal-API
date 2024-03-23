@@ -7,7 +7,7 @@ namespace GMP.API.Data
     public class GMPDbContext : DbContext
     {
 
-        public GMPDbContext(DbContextOptions dbContextOptions) : base(dbContextOptions) 
+        public GMPDbContext(DbContextOptions<GMPDbContext> dbContextOptions) : base(dbContextOptions) 
         {
             
         }
@@ -18,6 +18,7 @@ namespace GMP.API.Data
         public DbSet<Document> Documents { get; set; }
         public DbSet<Task> Tasks { get; set; }
         public DbSet<Notification> Notifications { get; set; }
+/*
         public DbSet<GrantApplicant> GrantApplicants { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -35,6 +36,6 @@ namespace GMP.API.Data
 
             base.OnModelCreating(modelBuilder);
         }
-
+       */
     }
 }

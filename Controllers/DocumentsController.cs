@@ -1,22 +1,29 @@
-﻿using GMP.API.CustomActionFilters;
+﻿using AutoMapper;
+using GMP.API.CustomActionFilters;
 using GMP.API.Models.Domain;
 using GMP.API.Models.DTO;
 using GMP.API.Repositories;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace GMP.API.Controllers
 {
+    [EnableCors("corspolicy")]
     [Route("api/[controller]")]
     [ApiController]
     public class DocumentsController : ControllerBase
     {
         private readonly IDocumentRepository documentRepository;
+        private readonly IMapper mapper;
 
-        public DocumentsController(IDocumentRepository documentRepository) 
+        public DocumentsController(IDocumentRepository documentRepository, IMapper mapper) 
         {
             this.documentRepository = documentRepository;
+            this.mapper = mapper;
         }
 
         [HttpPost]
@@ -59,5 +66,30 @@ namespace GMP.API.Controllers
             }
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var documentDomain = await documentRepository.GetAllAsync();
+
+            var documentDto = mapper.Map<List<DocumentDto>>(documentDomain);
+
+            return Ok(documentDto);
+        }
+
+        [HttpGet]
+        [Route("{id:int}")]
+        public async Task<IActionResult> GetById([FromRoute] int id)
+        {
+            var documentDomain = await documentRepository.GetById(id);
+
+            if (documentDomain == null)
+            {
+                return NotFound();
+            }
+
+            var documentDto = mapper.Map<Document>(documentDomain);
+
+            return Ok(documentDto);
+        }
     }
 }

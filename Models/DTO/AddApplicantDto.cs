@@ -23,7 +23,7 @@ namespace GMP.API.Models.DTO
         [Required]
         public bool IsStaffMember { get; set; }
 
-        public int DocumentId { get; set; }
+        public int? DocumentId { get; set; }
 
     }
 }

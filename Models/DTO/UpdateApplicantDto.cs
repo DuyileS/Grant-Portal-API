@@ -22,6 +22,5 @@ namespace GMP.API.Models.DTO
         public string Status { get; set; }
         [Required]
         public bool IsStaffMember { get; set; }
-        public int DocumentId { get; set; }
     }
 }

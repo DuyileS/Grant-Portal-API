@@ -3,11 +3,15 @@ using GMP.API.CustomActionFilters;
 using GMP.API.Models.Domain;
 using GMP.API.Models.DTO;
 using GMP.API.Repositories;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace GMP.API.Controllers
 {
+    [EnableCors("corspolicy")]
     [Route("api/[controller]")]
     [ApiController]
     public class GrantsController : ControllerBase

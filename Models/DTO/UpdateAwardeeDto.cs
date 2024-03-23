@@ -18,6 +18,5 @@ namespace GMP.API.Models.DTO
         public string AreaOfSpecialization { get; set; }
         [Required]
         public int Amount { get; set; }
-        public int? DocumentId { get; set; }
     }
 }

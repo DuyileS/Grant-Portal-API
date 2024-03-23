@@ -3,11 +3,15 @@ using GMP.API.CustomActionFilters;
 using GMP.API.Models.Domain;
 using GMP.API.Models.DTO;
 using GMP.API.Repositories;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace GMP.API.Controllers
 {
+    [EnableCors("corspolicy")]
     [Route("api/[controller]")]
     [ApiController]
     public class ApplicantsController : ControllerBase
@@ -26,9 +30,9 @@ namespace GMP.API.Controllers
         {
             var applicantDomain = await applicantRepository.GetAllAsync();
 
-            var applicantDto = mapper.Map<List<ApplicantDto>>(applicantDomain);
+            //var applicantDto = mapper.Map<List<ApplicantDto>>(applicantDomain);
 
-            return Ok(applicantDto);
+            return Ok(applicantDomain);
         }
 
         [HttpGet]
@@ -44,7 +48,7 @@ namespace GMP.API.Controllers
 
             var applicantDto = mapper.Map<ApplicantDto>(applicantDomain);
 
-            return Ok(applicantDto);
+            return Ok(applicantDomain);
         }
 
         [HttpPost]

@@ -13,6 +13,7 @@ namespace GMP.API.Models.DTO
         [Required]
         public string Criteria { get; set; }
         [Required]
-        public string Deadline { get; set;}
+        [DataType(DataType.Date)]
+        public DateTime Deadline { get; set;}
     }
 }

@@ -55,7 +55,6 @@ namespace GMP.API.Repositories
             existingApplicant.PhoneNumber = applicant.PhoneNumber;
             existingApplicant.Status = applicant.Status;
             existingApplicant.IsStaffMember = applicant.IsStaffMember;
-            existingApplicant.DocumentId = applicant.DocumentId;
 
             await dbContext.SaveChangesAsync();
             return existingApplicant;

@@ -57,7 +57,6 @@ namespace GMP.API.Repositories
             existingAwardee.Email = awardee.Email;
             existingAwardee.AreaOfSpecialization = awardee.AreaOfSpecialization;
             existingAwardee.Amount = awardee.Amount;
-            existingAwardee.DocumentId = awardee.DocumentId;
 
             await dbContext.SaveChangesAsync();
             return existingAwardee;

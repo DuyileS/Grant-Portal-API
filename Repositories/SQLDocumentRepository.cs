@@ -1,5 +1,6 @@
 ﻿using GMP.API.Data;
 using GMP.API.Models.Domain;
+using Microsoft.EntityFrameworkCore;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace GMP.API.Repositories
@@ -31,7 +32,7 @@ namespace GMP.API.Repositories
 
             //To return url to file location on the host
             //https://localhost:1234/Images/image.jpg
-            var urlFilePath = $"{httpContextAccessor.HttpContext.Request.Scheme}://{httpContextAccessor.HttpContext.Request.Host}{httpContextAccessor.HttpContext.Request.PathBase}/Images/{document.Title}{document.FileExtension}";
+            var urlFilePath = $"{httpContextAccessor.HttpContext.Request.Scheme}://{httpContextAccessor.HttpContext.Request.Host}{httpContextAccessor.HttpContext.Request.PathBase}/Documents/{document.Title}{document.FileExtension}";
 
             document.FilePath = urlFilePath;
 
@@ -41,6 +42,16 @@ namespace GMP.API.Repositories
 
             return document;
 
+        }
+
+        public async Task<List<Document>> GetAllAsync()
+        {
+            return await dbContext.Documents.ToListAsync();
+        }
+
+        public async Task<Document?> GetById(int id)
+        {
+            return await dbContext.Documents.FirstOrDefaultAsync(x => x.DocumentId == id);
         }
     }
 }

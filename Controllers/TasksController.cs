@@ -2,12 +2,14 @@
 using GMP.API.CustomActionFilters;
 using GMP.API.Models.DTO;
 using GMP.API.Repositories;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Task = GMP.API.Models.Domain.Task;
 
 namespace GMP.API.Controllers
 {
+    [EnableCors("corspolicy")]
     [Route("api/[controller]")]
     [ApiController]
     public class TasksController : ControllerBase

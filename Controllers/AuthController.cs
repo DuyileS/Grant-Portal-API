@@ -40,7 +40,8 @@ namespace GMP.API.Controllers
             var identityUser = new IdentityUser
             {
                 UserName = userName,
-                Email = registerDto.Username
+                Email = registerDto.Username,
+                PhoneNumber = registerDto.PhoneNumber,
             };
 
             var identityResult = await userManager.CreateAsync(identityUser, registerDto.Password);
@@ -90,6 +91,7 @@ namespace GMP.API.Controllers
                             Id = userId,
                             Username = userName,
                             Email = userEmail
+
                         });
                         
 

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using GMP.API.Models.Domain;
 using GMP.API.Models.DTO;
+using Microsoft.AspNetCore.Identity;
 using Task = GMP.API.Models.Domain.Task;
 
 namespace GMP.API.Mappings
@@ -16,6 +17,7 @@ namespace GMP.API.Mappings
             CreateMap<NotificationDto, Notification>().ReverseMap();
             CreateMap<ReviewerDto, Reviewer>().ReverseMap();    
             CreateMap<TaskDto, Task>().ReverseMap();
+            CreateMap<UserDto, IdentityUser>().ReverseMap();
             CreateMap<AddApplicantDto, Applicant>().ReverseMap();
             CreateMap<UpdateApplicantDto, Applicant>().ReverseMap();
             CreateMap<AddAwardeeDto, Awardees>().ReverseMap();    

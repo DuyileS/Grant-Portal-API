@@ -83,3 +83,6 @@ C:\Users\DEUCE\source\repos\GMP\GMP\GMP.API\bin\Debug\net7.0\Microsoft.AspNetCor
 C:\Users\DEUCE\source\repos\GMP\GMP\GMP.API\bin\Debug\net7.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\DEUCE\source\repos\GMP\GMP\GMP.API\bin\Debug\net7.0\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\DEUCE\source\repos\GMP\GMP\GMP.API\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
+C:\Users\DEUCE\source\repos\GMP\GMP\GMP.API\bin\Debug\net7.0\MailKit.dll
+C:\Users\DEUCE\source\repos\GMP\GMP\GMP.API\bin\Debug\net7.0\MimeKit.dll
+C:\Users\DEUCE\source\repos\GMP\GMP\GMP.API\bin\Debug\net7.0\BouncyCastle.Crypto.dll

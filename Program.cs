@@ -9,6 +9,7 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using GMP.API;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -63,7 +64,7 @@ builder.Services.AddScoped<IDocumentRepository, SQLDocumentRepository>();
 builder.Services.AddScoped<IGrantRepository, SQLGrantRepository>();
 builder.Services.AddScoped<ITaskRepository, SQLTaskRepository>();
 builder.Services.AddScoped<ITokenRepository, TokenRepository>();
-//builder.Services.AddScoped<IUserRepository, SQLUserRepository>();
+builder.Services.AddTransient<IMailService, MailService>();
 
 builder.Services.AddAutoMapper(typeof(AutomapperProfiles));
 
@@ -102,6 +103,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         IssuerSigningKey = new SymmetricSecurityKey(
             Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
     });
+
+//builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
 
 var app = builder.Build();
 

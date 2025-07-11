@@ -11,10 +11,10 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["GMP.API/GMP.API.csproj", "GMP.API/"]
-RUN dotnet restore "./GMP.API/GMP.API.csproj"
+COPY ["Grant-Portal-API/GMP.API.csproj", "Grant-Portal-API/"]
+RUN dotnet restore "./Grant-Portal-API/GMP.API.csproj"
 COPY . .
-WORKDIR "/src/GMP.API"
+WORKDIR "/Grant-Portal-API"
 RUN dotnet build "./GMP.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # This stage is used to publish the service project to be copied to the final stage

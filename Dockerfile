@@ -11,8 +11,8 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["Grant-Portal-API/GMP.API.csproj", "Grant-Portal-API/"]
-RUN dotnet restore "./Grant-Portal-API/GMP.API.csproj"
+COPY ["GMP.API.csproj", "."]
+RUN dotnet restore "./GMP.API.csproj"
 COPY . .
 WORKDIR "/Grant-Portal-API"
 RUN dotnet build "./GMP.API.csproj" -c $BUILD_CONFIGURATION -o /app/build

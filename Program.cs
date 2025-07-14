@@ -121,11 +121,21 @@ app.UseAuthorization();
 
 app.UseCors("corspolicy");
 
+
+
+// Ensure Documents folder exists
+var documentsPath = Path.Combine(Directory.GetCurrentDirectory(), "Documents");
+if (!Directory.Exists(documentsPath))
+{
+    Directory.CreateDirectory(documentsPath);
+}
+
 app.UseStaticFiles(new StaticFileOptions
 {
-    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Documents")),
+    FileProvider = new PhysicalFileProvider(documentsPath),
     RequestPath = "/Documents"
 });
+
 
 app.MapControllers();
 

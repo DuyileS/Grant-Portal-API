@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GMP.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b54f515b750945f1b5260682e106d71304354f5b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+19d110a309be8f72f38f3fd97b5ad1082e2d7915")]
 [assembly: System.Reflection.AssemblyProductAttribute("GMP.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GMP.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

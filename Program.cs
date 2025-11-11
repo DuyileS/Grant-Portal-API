@@ -50,13 +50,24 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
-builder.Services.AddDbContext<GMPDbContext>(options => 
-options.UseSqlServer(builder.Configuration.GetConnectionString("GMPConnectionString"))
+//builder.Services.AddDbContext<GMPDbContext>(options => 
+//options.UseSqlServer(builder.Configuration.GetConnectionString("GMPConnectionString"))
+//);
+
+builder.Services.AddDbContextPool<GMPDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("Neon")
+        , npgsqlOptions =>
+        {
+            npgsqlOptions.EnableRetryOnFailure(
+                maxRetryCount: 3, // The maximum number of retry attempts.
+                maxRetryDelay: TimeSpan.FromSeconds(30), // The maximum delay between retries.
+                errorCodesToAdd: null); // You can add specific SQL error codes to retry on, but the default is good for connection errors.
+        }
+    )
 );
 
-builder.Services.AddDbContext<GMPAuthDbContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("GMPAuthConnectionString"))
-);
+builder.Services.AddDbContextPool<GMPAuthDbContext>(options =>
+ options.UseNpgsql(builder.Configuration.GetConnectionString("Neon")));
 
 builder.Services.AddScoped<IApplicantRepository, SQLApplicantRepository>();
 builder.Services.AddScoped<IAwardeeRepository, SQLAwardeeRepository>();
@@ -70,7 +81,7 @@ builder.Services.AddAutoMapper(typeof(AutomapperProfiles));
 
 builder.Services.AddCors(options => options.AddPolicy("corspolicy", builder =>
 {
-    builder.WithOrigins("http://localhost:3030")
+    builder.WithOrigins("*")
     .AllowAnyMethod()
     .AllowAnyHeader();
 }));
